@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "259399895248",
+    "project_id": "universop-6e5e3",
+    "storage_bucket": "universop-6e5e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259399895248:android:9b107d533c327778bab6d5",
+        "android_client_info": {
+          "package_name": "com.example.universop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259399895248-85h36cc65jiefiths7e5sf4f401e7bdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYEhMZ6lbqGECdUXs9Yy-N6Rp1crs21lI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259399895248-85h36cc65jiefiths7e5sf4f401e7bdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
