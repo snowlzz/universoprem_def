@@ -3,6 +3,7 @@ import 'package:universop/app/modules/initial/initial_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:universop/app/modules/login/login_store.dart';
 
+import '../home/home_page.dart';
 import '../login/login_Page.dart';
 import '../register/register_page.dart';
 import '../register/register_store.dart';
@@ -19,6 +20,6 @@ class InitialModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, args) => const InitialPage()),
     ChildRoute('/register', child: (_, args) => const RegisterPage()),
-    ChildRoute('/login', child: (_, args) => const LoginPage())
+    ChildRoute('/login', child: (_, args) => const LoginPage()),
   ];
 }

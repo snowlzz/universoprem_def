@@ -35,7 +35,9 @@ class InitialPageState extends State<InitialPage> {
                       backgroundColor: MaterialStateProperty.all(
                           const Color.fromARGB(255, 101, 187, 88)),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Modular.to.pushReplacementNamed('/login');
+                    },
                     child: const Text(
                       "Já tem uma conta? Entre!",
                       style: TextStyle(
@@ -55,7 +57,7 @@ class InitialPageState extends State<InitialPage> {
                           const Color.fromARGB(255, 255, 255, 255)),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, "/register");
+                      Modular.to.pushReplacementNamed('/register');
                     },
                     child: const Text(
                       "Primeira vez no Universo Prematuro?",

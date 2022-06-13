@@ -18,7 +18,9 @@ class EditprofilePageState extends State<EditprofilePage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          Center(child: Text("OI"),)
+        ],
       ),
     );
   }

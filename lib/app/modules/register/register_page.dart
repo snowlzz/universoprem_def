@@ -1,6 +1,6 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:universop/app/modules/register/models/UserModel.dart';
+import 'package:universop/app/modules/register/models/userM_store.dart';
 import 'package:universop/app/modules/register/register_store.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +48,7 @@ class RegisterPageState extends State<RegisterPage> {
                           TextField(
                               controller: store.controllerName,
                               decoration: InputDecoration(
+                                errorText: store.validateEmail(),
                                   labelText: "Nome",
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
@@ -62,6 +63,7 @@ class RegisterPageState extends State<RegisterPage> {
                                   ))),
                           const SizedBox(height: 8),
                           TextField(
+                            obscureText: true,
                               controller: store.controllerPass,
                               decoration: InputDecoration(
                                   labelText: "Senha",
@@ -70,7 +72,9 @@ class RegisterPageState extends State<RegisterPage> {
                                   ))),
                           ElevatedButton(
                               onPressed: () {
-                                store.registerUser(UserModel());
+                                store.registerUser(email: store.controllerEmail.text, password: store.controllerPass.text);
+                                store.signIn(email: store.controllerEmail.text, password: store.controllerPass.text);
+                                Modular.to.pushReplacementNamed("/editprofile");
                               },
                               child: const Text("JACARÉ"))
                         ],

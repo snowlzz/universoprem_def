@@ -1,6 +1,7 @@
-import 'package:universop/app/modules/register/models/UserModel.dart';
 
-class ProfileModel extends UserModel {
+import 'package:universop/app/modules/register/models/userM_store.dart';
+
+class ProfileModel extends UserMStore {
   String? mother;
   String? birth;
   int? gage;

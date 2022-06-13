@@ -73,28 +73,38 @@ mixin _$RegisterStore on _RegisterStoreBase, Store {
     });
   }
 
+  late final _$loadingAtom =
+      Atom(name: '_RegisterStoreBase.loading', context: context);
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
   late final _$registerUserAsyncAction =
       AsyncAction('_RegisterStoreBase.registerUser', context: context);
 
   @override
-  Future<dynamic> registerUser(UserModel userModel) {
-    return _$registerUserAsyncAction.run(() => super.registerUser(userModel));
+  Future<User> registerUser({required String email, required String password}) {
+    return _$registerUserAsyncAction
+        .run(() => super.registerUser(email: email, password: password));
   }
 
-  late final _$loginUserAsyncAction =
-      AsyncAction('_RegisterStoreBase.loginUser', context: context);
+  late final _$signInAsyncAction =
+      AsyncAction('_RegisterStoreBase.signIn', context: context);
 
   @override
-  Future<dynamic> loginUser(UserModel userModel) {
-    return _$loginUserAsyncAction.run(() => super.loginUser(userModel));
-  }
-
-  late final _$validateAsyncAction =
-      AsyncAction('_RegisterStoreBase.validate', context: context);
-
-  @override
-  Future<dynamic> validate() {
-    return _$validateAsyncAction.run(() => super.validate());
+  Future<dynamic> signIn({required String email, required String password}) {
+    return _$signInAsyncAction
+        .run(() => super.signIn(email: email, password: password));
   }
 
   @override
@@ -103,7 +113,8 @@ mixin _$RegisterStore on _RegisterStoreBase, Store {
 erro: ${erro},
 controllerName: ${controllerName},
 controllerEmail: ${controllerEmail},
-controllerPass: ${controllerPass}
+controllerPass: ${controllerPass},
+loading: ${loading}
     ''';
   }
 }

@@ -1,35 +1,26 @@
-// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
-
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:universop/app/modules/home/home_store.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  const HomePage({Key? key, this.title = "Home"}) : super(key: key);
-
+  const HomePage({Key? key, this.title = 'HomePage'}) : super(key: key);
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
+class HomePageState extends State<HomePage> {
+  final HomeStore store = Modular.get();
 
-class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter'),
+        title: Text(widget.title),
       ),
-      body: Center(
-        child: Observer(
-          builder: (context) => Text('${store.counter}'),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: const Icon(Icons.add),
+      body: Column(
+        children: <Widget>[
+          Center(child: Text("OI"),)
+        ],
       ),
     );
   }
