@@ -9,6 +9,22 @@ part of 'register_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegisterStore on _RegisterStoreBase, Store {
+  late final _$erroAtom =
+      Atom(name: '_RegisterStoreBase.erro', context: context);
+
+  @override
+  String get erro {
+    _$erroAtom.reportRead();
+    return super.erro;
+  }
+
+  @override
+  set erro(String value) {
+    _$erroAtom.reportWrite(value, super.erro, () {
+      super.erro = value;
+    });
+  }
+
   late final _$controllerNameAtom =
       Atom(name: '_RegisterStoreBase.controllerName', context: context);
 
@@ -57,17 +73,34 @@ mixin _$RegisterStore on _RegisterStoreBase, Store {
     });
   }
 
-  late final _$registerAsyncAction =
-      AsyncAction('_RegisterStoreBase.register', context: context);
+  late final _$registerUserAsyncAction =
+      AsyncAction('_RegisterStoreBase.registerUser', context: context);
 
   @override
-  Future<void> register(UserModel user) {
-    return _$registerAsyncAction.run(() => super.register(user));
+  Future<dynamic> registerUser(UserModel userModel) {
+    return _$registerUserAsyncAction.run(() => super.registerUser(userModel));
+  }
+
+  late final _$loginUserAsyncAction =
+      AsyncAction('_RegisterStoreBase.loginUser', context: context);
+
+  @override
+  Future<dynamic> loginUser(UserModel userModel) {
+    return _$loginUserAsyncAction.run(() => super.loginUser(userModel));
+  }
+
+  late final _$validateAsyncAction =
+      AsyncAction('_RegisterStoreBase.validate', context: context);
+
+  @override
+  Future<dynamic> validate() {
+    return _$validateAsyncAction.run(() => super.validate());
   }
 
   @override
   String toString() {
     return '''
+erro: ${erro},
 controllerName: ${controllerName},
 controllerEmail: ${controllerEmail},
 controllerPass: ${controllerPass}

@@ -15,6 +15,8 @@ abstract class _RegisterStoreBase with Store {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   @observable
+  String erro = '';
+  @observable
   TextEditingController controllerName = TextEditingController();
   @observable
   TextEditingController controllerEmail = TextEditingController();
@@ -22,8 +24,36 @@ abstract class _RegisterStoreBase with Store {
   TextEditingController controllerPass = TextEditingController();
 
   @action
-  Future<void> register(UserModel user) async {
-    auth.createUserWithEmailAndPassword(
-        email: user.email!, password: user.pass!);
+  Future registerUser(UserModel userModel) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    auth
+        .createUserWithEmailAndPassword(
+            email: userModel.email, password: userModel.pass)
+        .then((firebaseUser) {
+      FirebaseFirestore db = FirebaseFirestore.instance;
+      db.collection("users").doc(firebaseUser.user?.uid).set(userModel.toMap());
+    });
+  }
+
+  @action
+  Future loginUser(UserModel userModel) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+  }
+
+  @action
+  Future validate() async {
+    String email = controllerEmail.text;
+    String pass = controllerPass.text;
+
+    if (email.isNotEmpty && email.contains("@")) {
+      if (pass.isNotEmpty && pass.length >= 5) {
+        erro = "";
+        UserModel userModel = UserModel();
+        userModel.email = email;
+        userModel.pass = pass;
+
+        registerUser(userModel);
+      }
+    }
   }
 }
